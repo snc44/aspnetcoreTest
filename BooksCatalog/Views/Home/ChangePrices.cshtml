@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BooksCatalog.Models.Category>
+@{
+}
+
+<br />
+<br />
+<form asp-action="changePrices" asp-controller="home" method="post">
+    <div class="form-group">
+        <select name="categId">
+            @foreach (var categ in Model)
+            {
+                <option value="@categ.Id">@categ.Category_name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="radio" value="Up" name="changeRadio">Up<br />
+        <input type="radio" value="Down" name="changeRadio">Down<br />
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="%" name="percentsCount" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Change prices" class="btn btn-default" />
+    </div>
+</form>

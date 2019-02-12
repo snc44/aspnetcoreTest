@@ -1,0 +1,54 @@
+﻿@model BooksCatalog.Models.Product
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<h2>Upload</h2>
+<div class="col-md-6">
+    <form asp-action="upload" asp-controller="home" method="post" id="formAsp">
+        <div class="form-group">
+            <label asp-for="Product_name" class="control-label">Title</label>
+            <input type="text" asp-for="Product_name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Manufacturer" class="control-label">Manufacturer</label>
+            <input type="text" asp-for="Manufacturer" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Product_price" class="control-label">Price</label>
+            <input type="text" asp-for="Product_price" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Product_count" class="control-label">Count</label>
+            <input type="text" asp-for="Product_count" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Brand</label>
+            <input type="text" name="categoryName" class="form-control" />
+        </div>
+        @*<div class="form-group">
+            <label class="control-label">Category</label>
+            <select name="categoryName">
+                <option value="Инструмент">Инструмент</option>
+                <option value="Кабельная продукция">Кабельная продукция</option>
+                <option value="Электродвигатели">Электродвигатели</option>
+            </select>
+        </div>*@
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+<script>
+    //var formObj = document.forms['formAsp'];
+    //var formSelect = formObj.elements['categNum'];
+    //var formInput = formObj.elements['categId'];
+
+    //switch (formSelect.options.selectedIndex) {
+    //    case 0: formInput.value = "1"; break;
+    //    case 1: formInput.value = "2"; break;
+    //    case 2: formInput.value = "3"; break;
+    //    default: formInput.value = "0"; break;
+    //}
+</script>
+

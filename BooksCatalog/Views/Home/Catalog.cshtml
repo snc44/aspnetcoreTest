@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<BooksCatalog.Models.Book>*@
+@model BooksCatalog.Models.ProductListViewModel
+@{
+    //ViewData["Title"] = "Search";
+}
+
+@*Можно сделать хранимую процедуру которая поднимет цены на какой то процент по бренду\категории*@
+@* ИЛИ УМЕНЬШИТ *@
+<h2>Catalog</h2>
+
+<form method="get">
+    <div class="form-inline form-group">
+        <label class="control-label"></label>
+        @Html.TextBox("product_name", Model.Product_name, htmlAttributes: new { @class = "form-control", @placeholder = "type title" })
+        <label class="control-label"></label>
+        @Html.TextBox("manufacturer", Model.Manufacturer, htmlAttributes: new { @class = "form-control", @placeholder = "type manufacturer" })
+        <label class="control-label"></label>
+        @Html.TextBox("price", Model.Product_price, htmlAttributes: new { @class = "form-control", @placeholder = "limit by price" })
+        <input type="submit" value="Find" class="btn btn-default" />
+    </div>
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <th>Title</th>
+        <th>Manufacturer</th>
+        <th>Price</th>
+        <th>Count</th>
+        <th>Brand</th>
+        <th>Operations</th>
+    </tr>
+    @foreach (var item in Model.Products)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Product_name)</td>
+        <td>@Html.DisplayFor(modelItem => item.Manufacturer)</td>
+        <td>@Html.DisplayFor(modelItem => item.Product_price)</td>
+        <td>@Html.DisplayFor(modelItem => item.Product_count)</td>
+        <td>@Html.DisplayFor(modelItem => item.Category_id)</td>
+        <td>
+            <a asp-controller="home" asp-action="edit" asp-route-id="@item.Id">Edit </a> |
+            <a style="color:firebrick" asp-controller="home" asp-action="delete" asp-route-id="@item.Id" onclick="return confirm('are you sure?')"> Delete </a> |
+            <a style="color:forestgreen" asp-controller="home" asp-action="selling" asp-route-id="@item.Id"> To sell</a>
+        </td>
+    </tr>
+    }
+</table>
+@*@if (Model.pageViewModel.HasPreviousPage)
+{
+    <a asp-action="Catalog"
+       asp-route-page="@(Model.pageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.pageViewModel.HasNextPage)
+{
+    <a asp-action="Catalog"
+       asp-route-page="@(Model.pageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}*@
+<br />
+<p>Products in base: <b>@ProductListViewModel.Quantity</b></p>
+@*<p>For your request: <b>@Model.CountAfterSearch</b> products was found</p>*@
+
